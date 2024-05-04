@@ -30,6 +30,11 @@ type CustomItem struct {
 	Comment string   `json:"comment"`
 }
 
+var paymentTypeMap = map[string]string{
+	"offline":    "CASH",
+	"creditCard": "CREDIT CARD",
+}
+
 func FormatOrdersForPrinting(orders wix.WixOrdersResponse) []CustomOrder {
 	var formattedOrders []CustomOrder
 
@@ -40,7 +45,7 @@ func FormatOrdersForPrinting(orders wix.WixOrdersResponse) []CustomOrder {
 		formattedOrder.CustomerNumber = formatPhoneNumber(o.Customer.Phone)
 		formattedOrder.Fulfillment = o.Fulfillment.Type
 		formattedOrder.DueDate = formatDateTime(o.Fulfillment.PromisedTime)
-		formattedOrder.PaymentType = o.Payments[0].Method
+		formattedOrder.PaymentType = paymentTypeMap[o.Payments[0].Method]
 		formattedOrder.OrderComment = o.Comment
 		formattedOrder.Tax = o.Totals.Tax
 		formattedOrder.Tip = o.Totals.Tip
