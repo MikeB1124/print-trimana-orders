@@ -115,10 +115,9 @@ func ReceiptOrderDetails(order CustomOrder, buf bytes.Buffer) bytes.Buffer {
 	buf.Write(esc.StringToHexBytes(fmt.Sprintf("Payment: %s", order.PaymentType)))
 	buf.Write(esc.LineFeed)
 	buf.Write(esc.StringToHexBytes(fmt.Sprintf("Due Date: %s", order.DueDate)))
-	buf.Write(esc.LineFeed)
 	if order.DeliveryAddress != "" {
-		buf.Write(esc.StringToHexBytes(fmt.Sprintf("Delivery Address: %s", order.DeliveryAddress)))
 		buf.Write(esc.LineFeed)
+		buf.Write(esc.StringToHexBytes(fmt.Sprintf("Delivery Address: %s", order.DeliveryAddress)))
 	}
 	buf.Write(esc.LineFeed)
 	buf.Write(esc.StringToHexBytes(order.Fulfillment))
@@ -134,10 +133,13 @@ func ReceiptItems(order CustomOrder, buf bytes.Buffer) bytes.Buffer {
 		buf.Write(esc.StringToHexBytes(item.Item))
 		buf.Write(esc.LineFeed)
 		for _, option := range item.Options {
-			buf.Write(esc.StringToHexBytes(fmt.Sprintf("   %s", option)))
+			buf.Write(esc.StringToHexBytes(fmt.Sprintf("    %s", option)))
 			buf.Write(esc.LineFeed)
 		}
-		buf.Write(esc.StringToHexBytes(item.Comment))
+		if item.Comment != "" {
+			buf.Write(esc.StringToHexBytes(fmt.Sprintf("    Comment: %s", item.Comment)))
+			buf.Write(esc.LineFeed)
+		}
 		buf.Write(esc.LineFeed)
 	}
 	return buf

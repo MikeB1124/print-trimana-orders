@@ -1,15 +1,16 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 
+	"github.com/MikeB1124/escpos/configuration"
 	"github.com/MikeB1124/escpos/printer"
 	"github.com/MikeB1124/escpos/receipt"
 	"github.com/MikeB1124/escpos/wix.go"
 )
 
 func main() {
+	configuration.Init()
 	//Init printers
 	printers := []map[string]string{{"ip": "192.168.86.29", "port": "9100"}}
 	printerConfigs := []printer.PrinterConfig{}
@@ -33,8 +34,8 @@ func main() {
 
 	//Parse and format orders
 	formattedOrders := receipt.FormatOrdersForPrinting(orders)
-	jsonFormat, _ := json.MarshalIndent(formattedOrders, "", "\t")
-	fmt.Println(string(jsonFormat))
+	// jsonFormat, _ := json.MarshalIndent(formattedOrders, "", "\t")
+	// fmt.Println(string(jsonFormat))
 
 	//Get esc commands from formatted orders
 	escFormattedReceipts := receipt.EscFormatReceipts(formattedOrders)
