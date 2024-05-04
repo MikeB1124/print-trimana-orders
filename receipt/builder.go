@@ -122,6 +122,7 @@ func ReceiptOrderDetails(order CustomOrder, buf bytes.Buffer) bytes.Buffer {
 	}
 	buf.Write(esc.LineFeed)
 	buf.Write(esc.StringToHexBytes(order.Fulfillment))
+	buf.Write(esc.LineFeed)
 	buf.Write(esc.StringToHexBytes("------------------------------------------"))
 	buf.Write(esc.FeedPaper)
 	return buf
