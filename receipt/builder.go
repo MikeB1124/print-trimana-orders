@@ -14,7 +14,7 @@ type CustomOrder struct {
 	CustomerName   string       `json:"customerName"`
 	CustomerNumber string       `json:"customerNumber"`
 	Fulfillment    string       `json:"fulfillment"`
-	DueDate        time.Time    `json:"dueDate"`
+	DueDate        string       `json:"dueDate"`
 	PaymentType    string       `json:"paymentType"`
 	OrderComment   string       `json:"orderComment"`
 	Tax            string       `json:"tax"`
@@ -37,9 +37,9 @@ func FormatOrdersForPrinting(orders wix.WixOrdersResponse) []CustomOrder {
 		var formattedOrder CustomOrder
 		formattedOrder.ID = o.ID
 		formattedOrder.CustomerName = fmt.Sprintf("%s %s", o.Customer.FirstName, o.Customer.LastName)
-		formattedOrder.CustomerNumber = o.Customer.Phone
+		formattedOrder.CustomerNumber = formatPhoneNumber(o.Customer.Phone)
 		formattedOrder.Fulfillment = o.Fulfillment.Type
-		formattedOrder.DueDate = o.Fulfillment.PromisedTime
+		formattedOrder.DueDate = formatDateTime(o.Fulfillment.PromisedTime)
 		formattedOrder.PaymentType = o.Payments[0].Method
 		formattedOrder.OrderComment = o.Comment
 		formattedOrder.Tax = o.Totals.Tax
@@ -123,4 +123,16 @@ func ReceiptItems(order CustomOrder, buf bytes.Buffer) bytes.Buffer {
 	}
 	buf.Write(esc.FeedPaper)
 	return buf
+}
+
+func formatPhoneNumber(number string) string {
+	return fmt.Sprintf("(%s) %s-%s", number[2:5], number[5:8], number[8:])
+}
+
+func formatDateTime(dueDate string) string {
+	t, _ := time.Parse(time.RFC3339Nano, dueDate)
+	pst, _ := time.LoadLocation("America/Los_Angeles")
+	t = t.In(pst)
+	formattedTime := t.Format("January 2, 2006 at 3:04 PM")
+	return formattedTime
 }

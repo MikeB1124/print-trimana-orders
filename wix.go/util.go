@@ -71,7 +71,7 @@ type Payment struct {
 
 type Fulfillment struct {
 	Type            string        `json:"type"`
-	PromisedTime    time.Time     `json:"promisedTime"`
+	PromisedTime    string        `json:"promisedTime"`
 	ASAP            bool          `json:"asap"`
 	PreparationTime int           `json:"preparationTime"`
 	PickupDetails   PickupDetails `json:"pickupDetails"`

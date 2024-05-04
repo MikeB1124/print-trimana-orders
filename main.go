@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/MikeB1124/escpos/printer"
@@ -32,8 +33,8 @@ func main() {
 
 	//Parse and format orders
 	formattedOrders := receipt.FormatOrdersForPrinting(orders)
-	// jsonFormat, _ := json.MarshalIndent(formattedOrders, "", "\t")
-	// fmt.Println(string(jsonFormat))
+	jsonFormat, _ := json.MarshalIndent(formattedOrders, "", "\t")
+	fmt.Println(string(jsonFormat))
 
 	//Get esc commands from formatted orders
 	escFormattedReceipts := receipt.EscFormatReceipts(formattedOrders)
