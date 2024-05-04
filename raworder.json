@@ -1,30 +1,30 @@
 {
     "orders": [
         {
-            "id": "16508962738",
+            "id": "818545657645",
             "restaurantId": "174213597492017",
             "locationId": "363f8377-94fe-4280-b5d3-750a3593a938",
             "restaurantLocationId": "e2ef16ed-aad1-46d5-a4c8-c7afc010de4a",
-            "createdDate": "2024-05-03T17:17:09.098Z",
-            "updatedDate": "2024-05-03T17:41:24.561Z",
+            "createdDate": "2024-05-03T20:30:50.417Z",
+            "updatedDate": "2024-05-03T20:44:10.110Z",
             "comment": "",
             "currency": "USD",
             "status": "FULFILLED",
             "lineItems": [
                 {
                     "quantity": 1,
-                    "price": "9.00",
+                    "price": "13.00",
                     "dishOptions": [
                         {
-                            "name": "Choice of Bread",
+                            "name": "Choice of meat",
                             "selectedChoices": [
                                 {
                                     "quantity": 1,
                                     "price": "0.00",
                                     "dishOptions": [],
                                     "catalogReference": {
-                                        "catalogItemId": "e6016559-b85b-42d9-8cce-6f1b50c9d349",
-                                        "catalogItemName": "Sourdough"
+                                        "catalogItemId": "d9366cb9-3207-4549-948d-c43556c5bb12",
+                                        "catalogItemName": "Chicken"
                                     }
                                 }
                             ],
@@ -33,123 +33,173 @@
                             "type": "SELECTION",
                             "availableChoices": [
                                 {
-                                    "itemId": "5ea65377-3d1a-49b2-a8db-ddad19689fd3",
+                                    "itemId": "d9366cb9-3207-4549-948d-c43556c5bb12",
                                     "price": "0.00",
-                                    "name": "Wheat"
+                                    "name": "Chicken"
                                 },
                                 {
-                                    "itemId": "0f3c9708-7caa-4294-9d02-95cc7f404265",
+                                    "itemId": "955aa879-19e9-4d85-a519-8630c1803781",
+                                    "price": "2.00",
+                                    "name": "Steak"
+                                },
+                                {
+                                    "itemId": "a33dd4e0-2d5e-4a81-adc2-132ead09ce85",
                                     "price": "0.00",
-                                    "name": "White"
-                                },
-                                {
-                                    "itemId": "29a7b68d-7565-4c02-9805-68ddd0764cb0",
-                                    "price": "0.00",
-                                    "name": "Rye"
-                                },
-                                {
-                                    "itemId": "e6016559-b85b-42d9-8cce-6f1b50c9d349",
-                                    "price": "0.00",
-                                    "name": "Sourdough"
-                                },
-                                {
-                                    "itemId": "fa6553fc-1e8e-4595-ba7c-5bb9670afa90",
-                                    "price": "0.50",
-                                    "name": "Croissant"
-                                }
-                            ],
-                            "defaultChoices": []
-                        },
-                        {
-                            "name": "Choice of Meat",
-                            "selectedChoices": [
-                                {
-                                    "quantity": 1,
-                                    "price": "0.00",
-                                    "dishOptions": [],
-                                    "catalogReference": {
-                                        "catalogItemId": "f39b3e24-ff83-4819-b47c-b1e95aeb6f49",
-                                        "catalogItemName": "Bacon"
-                                    }
-                                }
-                            ],
-                            "minChoices": 1,
-                            "maxChoices": 1,
-                            "type": "SELECTION",
-                            "availableChoices": [
-                                {
-                                    "itemId": "f39b3e24-ff83-4819-b47c-b1e95aeb6f49",
-                                    "price": "0.00",
-                                    "name": "Bacon"
-                                },
-                                {
-                                    "itemId": "5fb3cc49-19fa-4004-b7bb-1d5d806b69a7",
-                                    "price": "0.00",
-                                    "name": "Sausage"
-                                },
-                                {
-                                    "itemId": "337b44f3-953f-43e7-8233-74d8dc246291",
-                                    "price": "0.00",
-                                    "name": "Ham"
-                                }
-                            ],
-                            "defaultChoices": []
-                        },
-                        {
-                            "name": "Add-Ons",
-                            "selectedChoices": [
-                                {
-                                    "quantity": 1,
-                                    "price": "1.00",
-                                    "dishOptions": [],
-                                    "catalogReference": {
-                                        "catalogItemId": "b5a9d01c-8396-496c-ad5b-be3f2f4225ce",
-                                        "catalogItemName": "Avocado"
-                                    }
-                                },
-                                {
-                                    "quantity": 1,
-                                    "price": "0.50",
-                                    "dishOptions": [],
-                                    "catalogReference": {
-                                        "catalogItemId": "a666f488-3fb4-40f8-aef7-3a139d1969e1",
-                                        "catalogItemName": "Spinach"
-                                    }
-                                }
-                            ],
-                            "minChoices": 0,
-                            "maxChoices": 2147483647,
-                            "type": "EXTRAS",
-                            "availableChoices": [
-                                {
-                                    "itemId": "b5a9d01c-8396-496c-ad5b-be3f2f4225ce",
-                                    "price": "1.00",
-                                    "name": "Avocado"
-                                },
-                                {
-                                    "itemId": "a666f488-3fb4-40f8-aef7-3a139d1969e1",
-                                    "price": "0.50",
-                                    "name": "Spinach"
-                                },
-                                {
-                                    "itemId": "0228a365-3fac-41fa-b657-c0eaa93acb7c",
-                                    "price": "0.50",
-                                    "name": "Tomato"
-                                },
-                                {
-                                    "itemId": "e1c17018-4fc6-41cd-a938-23d478e0da63",
-                                    "price": "1.50",
-                                    "name": "Extra Meat"
+                                    "name": "Veggie"
                                 }
                             ],
                             "defaultChoices": []
                         }
                     ],
                     "catalogReference": {
-                        "catalogItemId": "4c791f54-27aa-4f1d-810a-7ccda0b45a0b",
-                        "catalogItemName": "Breakfast Sandwich",
-                        "catalogItemDescription": "Choice of Meat, eggs, cheese, and with your choice of sliced bread or croissant.",
-                        "catalogItemMedia": "https://static.wixstatic.com/media/6110e7_a7a4d20be31e41d2972a83e39da800b4~mv2.jpg"
+                        "catalogItemId": "03838bc0-83d1-4b51-900e-b0f4e3863c63",
+                        "catalogItemName": "Baja Bowl",
+                        "catalogItemDescription": "Choice of meat, lettuce, rice, beans, cheddar cheese, salsa, sour cream, and guacamole.",
+                        "catalogItemMedia": "https://static.wixstatic.com/media/6110e7_95aa949814bd40269d28a16c5589b9c4~mv2.jpg"
+                    }
+                },
+                {
+                    "quantity": 1,
+                    "price": "13.00",
+                    "dishOptions": [
+                        {
+                            "name": "Choice of meat",
+                            "selectedChoices": [
+                                {
+                                    "quantity": 1,
+                                    "price": "2.00",
+                                    "dishOptions": [],
+                                    "catalogReference": {
+                                        "catalogItemId": "955aa879-19e9-4d85-a519-8630c1803781",
+                                        "catalogItemName": "Steak"
+                                    }
+                                }
+                            ],
+                            "minChoices": 1,
+                            "maxChoices": 1,
+                            "type": "SELECTION",
+                            "availableChoices": [
+                                {
+                                    "itemId": "d9366cb9-3207-4549-948d-c43556c5bb12",
+                                    "price": "0.00",
+                                    "name": "Chicken"
+                                },
+                                {
+                                    "itemId": "955aa879-19e9-4d85-a519-8630c1803781",
+                                    "price": "2.00",
+                                    "name": "Steak"
+                                },
+                                {
+                                    "itemId": "a33dd4e0-2d5e-4a81-adc2-132ead09ce85",
+                                    "price": "0.00",
+                                    "name": "Veggie"
+                                }
+                            ],
+                            "defaultChoices": []
+                        }
+                    ],
+                    "catalogReference": {
+                        "catalogItemId": "03838bc0-83d1-4b51-900e-b0f4e3863c63",
+                        "catalogItemName": "Baja Bowl",
+                        "catalogItemDescription": "Choice of meat, lettuce, rice, beans, cheddar cheese, salsa, sour cream, and guacamole.",
+                        "catalogItemMedia": "https://static.wixstatic.com/media/6110e7_95aa949814bd40269d28a16c5589b9c4~mv2.jpg"
+                    }
+                },
+                {
+                    "quantity": 1,
+                    "price": "2.51",
+                    "dishOptions": [
+                        {
+                            "name": "Size",
+                            "selectedChoices": [
+                                {
+                                    "quantity": 1,
+                                    "price": "0.00",
+                                    "dishOptions": [],
+                                    "catalogReference": {
+                                        "catalogItemId": "d8609ec1-ec77-421d-8d30-1bc0900d7114",
+                                        "catalogItemName": "Small"
+                                    }
+                                }
+                            ],
+                            "minChoices": 1,
+                            "maxChoices": 1,
+                            "type": "SELECTION",
+                            "availableChoices": [
+                                {
+                                    "itemId": "d8609ec1-ec77-421d-8d30-1bc0900d7114",
+                                    "price": "0.00",
+                                    "name": "Small"
+                                },
+                                {
+                                    "itemId": "4f278364-127e-434c-8217-910814763aba",
+                                    "price": "0.69",
+                                    "name": "Large"
+                                }
+                            ],
+                            "defaultChoices": []
+                        },
+                        {
+                            "name": "Drinks",
+                            "selectedChoices": [
+                                {
+                                    "quantity": 1,
+                                    "price": "0.00",
+                                    "dishOptions": [],
+                                    "catalogReference": {
+                                        "catalogItemId": "a14cf42a-e407-402c-9618-b092598f0e0a",
+                                        "catalogItemName": "Coke"
+                                    }
+                                }
+                            ],
+                            "minChoices": 1,
+                            "maxChoices": 1,
+                            "type": "SELECTION",
+                            "availableChoices": [
+                                {
+                                    "itemId": "a14cf42a-e407-402c-9618-b092598f0e0a",
+                                    "price": "0.00",
+                                    "name": "Coke"
+                                },
+                                {
+                                    "itemId": "4017e9bc-1d61-4a4c-90db-1e23f5ead8c2",
+                                    "price": "0.00",
+                                    "name": "Diet Coke"
+                                },
+                                {
+                                    "itemId": "73ac7462-74be-4aaa-b790-e00c498fa9a9",
+                                    "price": "0.00",
+                                    "name": "Dr Pepper "
+                                },
+                                {
+                                    "itemId": "a41305a7-429c-40de-bee1-f6ebb68fb246",
+                                    "price": "0.00",
+                                    "name": "Sprite"
+                                },
+                                {
+                                    "itemId": "78fc4210-4df3-497b-adb5-e84cd868ceac",
+                                    "price": "0.00",
+                                    "name": "Orange Fanta"
+                                },
+                                {
+                                    "itemId": "60827662-fdbb-4dd2-9cc6-f570233e68fa",
+                                    "price": "0.00",
+                                    "name": "Zero Coke"
+                                },
+                                {
+                                    "itemId": "98c3a4e0-8b29-4a82-b8cd-9dee5f445e67",
+                                    "price": "0.00",
+                                    "name": "Lemonade"
+                                }
+                            ],
+                            "defaultChoices": []
+                        }
+                    ],
+                    "catalogReference": {
+                        "catalogItemId": "7f7a1e20-9bfb-4b66-a218-d1ba7b778829",
+                        "catalogItemName": "Fountain Drinks",
+                        "catalogItemDescription": "",
+                        "catalogItemMedia": "https://static.wixstatic.com/media/6110e7_6825497695ee431d9fb02adc1e97a209~mv2.png"
                     }
                 }
             ],
@@ -157,14 +207,14 @@
             "payments": [
                 {
                     "type": "WIX_PAYMENTS",
-                    "amount": "13.60",
+                    "amount": "33.41",
                     "method": "creditCard",
-                    "providerTransactionId": "4d814eea-dc3d-4e85-90d6-8c1eca1a3dd5"
+                    "providerTransactionId": "c8f1816d-5b5d-4813-be9e-2ae73cf5f69c"
                 }
             ],
             "fulfillment": {
                 "type": "PICKUP",
-                "promisedTime": "2024-05-03T17:32:13.694Z",
+                "promisedTime": "2024-05-03T20:45:54.628Z",
                 "asap": true,
                 "preparationTime": 15,
                 "pickupDetails": {
@@ -172,206 +222,30 @@
                 }
             },
             "customer": {
-                "firstName": "Anthony",
-                "lastName": "Reyes",
-                "phone": "+13232863811",
-                "email": "tonykings2697@gmail.com",
-                "contactId": "cd956f8e-90e1-4d27-834c-635b126f2634"
+                "firstName": "Vicky ",
+                "lastName": "Zekiyan",
+                "phone": "+18187236918",
+                "email": "vzekiyan@gmail.com",
+                "contactId": "79113fab-b244-4155-bf72-f0bbcd43f066"
             },
             "totals": {
-                "subtotal": "10.50",
-                "total": "13.60",
-                "tax": "1.00",
-                "quantity": 1,
-                "tip": "2.10",
+                "subtotal": "30.51",
+                "total": "33.41",
+                "tax": "2.90",
+                "quantity": 3,
                 "serviceFees": []
             },
             "activities": [
                 {
-                    "timestamp": "2024-05-03T17:17:09.597Z",
+                    "timestamp": "2024-05-03T20:30:50.774Z",
                     "message": "new"
                 },
                 {
-                    "timestamp": "2024-05-03T17:33:32.009Z",
+                    "timestamp": "2024-05-03T20:32:16.445Z",
                     "message": "accepted"
                 },
                 {
-                    "timestamp": "2024-05-03T17:41:24.561Z",
-                    "message": "properties"
-                }
-            ],
-            "channelInfo": {
-                "type": "WEB"
-            }
-        },
-        {
-            "id": "250222782582",
-            "restaurantId": "174213597492017",
-            "locationId": "363f8377-94fe-4280-b5d3-750a3593a938",
-            "restaurantLocationId": "e2ef16ed-aad1-46d5-a4c8-c7afc010de4a",
-            "createdDate": "2024-05-03T18:36:01.731Z",
-            "updatedDate": "2024-05-03T18:55:04.666Z",
-            "comment": "",
-            "currency": "USD",
-            "status": "FULFILLED",
-            "lineItems": [
-                {
-                    "quantity": 1,
-                    "price": "14.00",
-                    "dishOptions": [
-                        {
-                            "name": "Choice of Bread",
-                            "selectedChoices": [
-                                {
-                                    "quantity": 1,
-                                    "price": "0.00",
-                                    "dishOptions": [],
-                                    "catalogReference": {
-                                        "catalogItemId": "e28b434c-6a40-4b15-810e-6cf6977af320",
-                                        "catalogItemName": "Sourdough"
-                                    }
-                                }
-                            ],
-                            "minChoices": 1,
-                            "maxChoices": 1,
-                            "type": "SELECTION",
-                            "availableChoices": [
-                                {
-                                    "itemId": "bcf63f45-1b6a-4a7d-ac7c-28ee1861352f",
-                                    "price": "0.00",
-                                    "name": "White"
-                                },
-                                {
-                                    "itemId": "7309fde0-ea4a-41b8-bb16-29b44c67c136",
-                                    "price": "0.00",
-                                    "name": "Wheat"
-                                },
-                                {
-                                    "itemId": "e28b434c-6a40-4b15-810e-6cf6977af320",
-                                    "price": "0.00",
-                                    "name": "Sourdough"
-                                },
-                                {
-                                    "itemId": "26afd9a4-a008-42b8-af62-1dc8c448e06f",
-                                    "price": "0.00",
-                                    "name": "Rye"
-                                }
-                            ],
-                            "defaultChoices": []
-                        },
-                        {
-                            "name": "Sides",
-                            "selectedChoices": [
-                                {
-                                    "quantity": 1,
-                                    "price": "0.00",
-                                    "dishOptions": [],
-                                    "catalogReference": {
-                                        "catalogItemId": "249c78ff-ac7d-41e6-a813-a30882b418df",
-                                        "catalogItemName": "Pasta Salad"
-                                    }
-                                }
-                            ],
-                            "minChoices": 1,
-                            "maxChoices": 1,
-                            "type": "SELECTION",
-                            "availableChoices": [
-                                {
-                                    "itemId": "5cb99ef5-f373-49c0-b606-8c4f8dcec7b2",
-                                    "price": "0.00",
-                                    "name": "Fruit"
-                                },
-                                {
-                                    "itemId": "99e35e42-8b90-43c3-bf19-037386290928",
-                                    "price": "0.00",
-                                    "name": "Fries"
-                                },
-                                {
-                                    "itemId": "249c78ff-ac7d-41e6-a813-a30882b418df",
-                                    "price": "0.00",
-                                    "name": "Pasta Salad"
-                                },
-                                {
-                                    "itemId": "591a5867-c52f-4873-a24a-98535e55dc12",
-                                    "price": "0.00",
-                                    "name": "Mixed Greens"
-                                },
-                                {
-                                    "itemId": "2165518d-34de-4f01-a61c-1e9dfaca0480",
-                                    "price": "0.00",
-                                    "name": "Chips"
-                                }
-                            ],
-                            "defaultChoices": []
-                        },
-                        {
-                            "name": "Add-Ons",
-                            "selectedChoices": [],
-                            "minChoices": 0,
-                            "maxChoices": 2147483647,
-                            "type": "EXTRAS",
-                            "availableChoices": [
-                                {
-                                    "itemId": "1f5eb44b-ecdc-4946-9a59-d9a8b96ef1ae",
-                                    "price": "1.00",
-                                    "name": "Avocado"
-                                }
-                            ],
-                            "defaultChoices": []
-                        }
-                    ],
-                    "catalogReference": {
-                        "catalogItemId": "71512b7f-15a1-43da-a7e5-64549b25d08b",
-                        "catalogItemName": "Club Sandwich",
-                        "catalogItemDescription": "Turkey, bacon, swiss cheese, lettuce, tomato, mayo, and mustard.",
-                        "catalogItemMedia": "https://static.wixstatic.com/media/6110e7_c281b9609b304e0887d0cb1eaa728964~mv2.jpg"
-                    }
-                }
-            ],
-            "discounts": [],
-            "payments": [
-                {
-                    "type": "WIX_PAYMENTS",
-                    "amount": "16.73",
-                    "method": "creditCard",
-                    "providerTransactionId": "4d8d8b1c-9976-4eac-8a2f-15af1349015f"
-                }
-            ],
-            "fulfillment": {
-                "type": "PICKUP",
-                "promisedTime": "2024-05-03T18:51:05.580Z",
-                "asap": true,
-                "preparationTime": 15,
-                "pickupDetails": {
-                    "fee": "0.00"
-                }
-            },
-            "customer": {
-                "firstName": "Kim",
-                "lastName": "LaFranchi",
-                "phone": "+13107959488",
-                "email": "klafranchi@hotmail.com",
-                "contactId": "f7ac879f-59ef-422c-bf70-0c15621042f9"
-            },
-            "totals": {
-                "subtotal": "14.00",
-                "total": "16.73",
-                "tax": "1.33",
-                "quantity": 1,
-                "tip": "1.40",
-                "serviceFees": []
-            },
-            "activities": [
-                {
-                    "timestamp": "2024-05-03T18:36:02.099Z",
-                    "message": "new"
-                },
-                {
-                    "timestamp": "2024-05-03T18:44:00.580Z",
-                    "message": "accepted"
-                },
-                {
-                    "timestamp": "2024-05-03T18:55:04.666Z",
+                    "timestamp": "2024-05-03T20:44:10.110Z",
                     "message": "properties"
                 }
             ],

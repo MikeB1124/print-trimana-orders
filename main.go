@@ -4,35 +4,50 @@ import (
 	"fmt"
 
 	"github.com/MikeB1124/escpos/printer"
+	"github.com/MikeB1124/escpos/receipt"
+	"github.com/MikeB1124/escpos/wix.go"
 )
 
 func main() {
-	//Intialize Printer
-	printer := &printer.PrinterConfig{}
-	printer.InitPrinter("192.168.86.29", "9100")
-
-	escposCmd := []byte{0x1B, 0x40, // Initialize printer
-		0x1B, 0x21, 0x20,
-		0x1B, 0x61, 0x2,
-		0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x2C, 0x20, 0x45, 0x53, 0x43, 0x2F, 0x50, 0x4F, 0x53, 0x21,
-		0x0A,
-		0x0A,
-		0x0A,
-		0x0A,
-		0x1B, 0x21, 0x0,
-		0x1B, 0x61, 0x1,
-		0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x2C, 0x20, 0x45, 0x53, 0x43, 0x2F, 0x50, 0x4F, 0x53, 0x21,
-		0x0A,
-		0x0A,
-		0x0A,
-		0x0A,
-		0x1B, 0x64, 0x3,
-		0x1B, 0x6D,
+	//Init printers
+	printers := []map[string]string{{"ip": "192.168.86.29", "port": "9100"}}
+	printerConfigs := []printer.PrinterConfig{}
+	for _, p := range printers {
+		printer := &printer.PrinterConfig{}
+		printer.InitPrinter(p["ip"], p["port"])
+		printerConfigs = append(printerConfigs, *printer)
 	}
-	err := printer.WriteToPrinter(escposCmd)
+
+	//Get Wix Orders
+	orders, err := wix.GetWixOrders()
 	if err != nil {
-		fmt.Printf("Error sending data to printer: %+v\n", err)
+		panic(fmt.Errorf("failed to get wix orders: %+v", err))
+	}
+
+	//Check if any order available for printing
+	if len(orders.Orders) == 0 {
+		fmt.Println("No orders available to print.")
 		return
 	}
-	fmt.Println("Printed successfully!")
+
+	//Parse and format orders
+	formattedOrders := receipt.FormatOrdersForPrinting(orders)
+	// jsonFormat, _ := json.MarshalIndent(formattedOrders, "", "\t")
+	// fmt.Println(string(jsonFormat))
+
+	//Get esc commands from formatted orders
+	escFormattedReceipts := receipt.EscFormatReceipts(formattedOrders)
+
+	//Print Orders
+	for _, p := range printerConfigs {
+		for _, o := range escFormattedReceipts {
+			err := p.WriteToPrinter(o.EscCommands)
+			if err != nil {
+				fmt.Printf("Printer %s:%s failed to print order# %s: %+v\n", p.PrinterAddr, p.PrinterPort, o.ID, err)
+			} else {
+				fmt.Printf("Order# %s has been printed by %s:%s\n", o.ID, p.PrinterAddr, p.PrinterPort)
+			}
+		}
+		p.NetConnection.Close()
+	}
 }

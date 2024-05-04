@@ -35,6 +35,5 @@ func (p PrinterConfig) WriteToPrinter(cmd []byte) error {
 	if err != nil {
 		return fmt.Errorf("failed to write to printer: %+v", err)
 	}
-	p.NetConnection.Close()
 	return nil
 }
