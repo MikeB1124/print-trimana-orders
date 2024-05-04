@@ -1,4 +1,4 @@
-module github.com/MikeB1124/escpos
+module github.com/MikeB1124/print-trimana-orders
 
 go 1.18
 

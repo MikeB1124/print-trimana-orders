@@ -7,7 +7,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/MikeB1124/escpos/configuration"
+	"github.com/MikeB1124/print-trimana-orders/configuration"
 )
 
 func GetWixOrders() (WixOrdersResponse, error) {

@@ -3,7 +3,7 @@ package receipt
 import (
 	"bytes"
 
-	"github.com/MikeB1124/escpos/esc"
+	"github.com/MikeB1124/print-trimana-orders/esc"
 )
 
 type EscFormattedReceipts struct {

@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/MikeB1124/escpos/esc"
-	"github.com/MikeB1124/escpos/wix.go"
+	"github.com/MikeB1124/print-trimana-orders/esc"
+	"github.com/MikeB1124/print-trimana-orders/wix.go"
 )
 
 type CustomOrder struct {

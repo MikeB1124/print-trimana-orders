@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/MikeB1124/escpos/configuration"
-	"github.com/MikeB1124/escpos/printer"
-	"github.com/MikeB1124/escpos/receipt"
-	"github.com/MikeB1124/escpos/wix.go"
+	"github.com/MikeB1124/print-trimana-orders/configuration"
+	"github.com/MikeB1124/print-trimana-orders/printer"
+	"github.com/MikeB1124/print-trimana-orders/receipt"
+	"github.com/MikeB1124/print-trimana-orders/wix.go"
 )
 
 func main() {
