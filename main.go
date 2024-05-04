@@ -9,13 +9,14 @@ import (
 )
 
 func main() {
+	logger.InfoLogger.Println("----------------------------------------------")
+	logger.InfoLogger.Println("START PRINTING")
 	configuration.Init()
 	//Init printers
-	printers := []map[string]string{{"ip": "192.168.86.29", "port": "9100"}}
 	printerConfigs := []escpos.PrinterConfig{}
-	for _, p := range printers {
+	for _, p := range configuration.Config.Printers {
 		printer := &escpos.PrinterConfig{}
-		printer.InitPrinter(p["ip"], p["port"])
+		printer.InitPrinter(p.IP, p.Port)
 		printerConfigs = append(printerConfigs, *printer)
 	}
 	logger.InfoLogger.Printf("Configured all printers %+v\n", printerConfigs)
@@ -26,6 +27,7 @@ func main() {
 		logger.ErrorLogger.Printf("Failed to get wix orders: %+v\n", err)
 		return
 	}
+	logger.InfoLogger.Printf("%d Wix orders found %+v\n", len(orders.Orders), orders)
 
 	//Check if any order available for printing
 	if len(orders.Orders) == 0 {
@@ -53,4 +55,6 @@ func main() {
 		}
 		p.NetConnection.Close()
 	}
+	logger.InfoLogger.Println("END PRINTING")
+	logger.InfoLogger.Println("----------------------------------------------")
 }

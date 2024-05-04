@@ -4,26 +4,25 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 
 	"github.com/MikeB1124/print-trimana-orders/configuration"
+	"github.com/MikeB1124/print-trimana-orders/logger"
 )
 
 func GetWixOrders() (WixOrdersResponse, error) {
-
-	log.Println("Creating new GET request to pull wix orders")
+	logger.InfoLogger.Println("Creating new GET request to pull wix orders")
 	req, err := http.NewRequest("GET", fmt.Sprintf("%s/orders?status=NEW", configuration.Config.WixConfig.Url), nil)
 	if err != nil {
 		return WixOrdersResponse{}, err
 	}
-	log.Println("Set http request headers for wix api call")
+	logger.InfoLogger.Println("Set http request headers for wix api call")
 	req.Header.Set("Authorization", configuration.Config.WixConfig.Auth)
 	req.Header.Set("wix-account-id", configuration.Config.WixConfig.AccountID)
 	req.Header.Set("wix-site-id", configuration.Config.WixConfig.SiteID)
 
 	//Execute http request
-	log.Println("Execute http GET request for listing wix orders")
+	logger.InfoLogger.Println("Execute http GET request for listing wix orders")
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
@@ -40,7 +39,7 @@ func GetWixOrders() (WixOrdersResponse, error) {
 
 	if resp.StatusCode == http.StatusOK {
 		//Unmarshal response to struct to return to client
-		log.Println("Unmarshal response for wix orders if 200 status code")
+		logger.InfoLogger.Println("Unmarshal response for wix orders if 200 status code")
 		var resData WixOrdersResponse
 		errUnmarshal := json.Unmarshal(bodyBytes, &resData)
 		if errUnmarshal != nil {

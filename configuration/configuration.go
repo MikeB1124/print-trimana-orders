@@ -14,8 +14,14 @@ type WixConfiguration struct {
 	SiteID    string `yaml:"siteId"`
 }
 
+type Printer struct {
+	IP   string `yaml:"ip"`
+	Port string `yaml:"port"`
+}
+
 type Configuration struct {
 	WixConfig WixConfiguration `yaml:"wix"`
+	Printers  []Printer        `yaml:"printers"`
 }
 
 var Config Configuration
