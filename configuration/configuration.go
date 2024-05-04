@@ -22,7 +22,7 @@ var Config Configuration
 
 func Init() {
 	log.Println("Loading config.yaml")
-	yamlFile, err := ioutil.ReadFile("C:/Users/Stephen Balian/Desktop/2022-dev-projects/production-apps/escpos/config.yaml")
+	yamlFile, err := ioutil.ReadFile("C:/Users/Stephen Balian/Desktop/2022-dev-projects/production-apps/print-trimana-orders/config.yaml")
 
 	if err != nil {
 		log.Printf("yamlFile.Get err   #%v ", err)

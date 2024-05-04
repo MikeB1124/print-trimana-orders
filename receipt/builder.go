@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/MikeB1124/print-trimana-orders/esc"
+	"github.com/MikeB1124/escpos"
 	"github.com/MikeB1124/print-trimana-orders/wix.go"
 )
 
@@ -83,78 +83,78 @@ func FormatOrdersForPrinting(orders wix.WixOrdersResponse) []CustomOrder {
 }
 
 func ReceiptInit(buf bytes.Buffer) bytes.Buffer {
-	buf.Write(esc.Init)
-	buf.Write(esc.DoubleHeightMode)
+	buf.Write(escpos.Init)
+	buf.Write(escpos.DoubleHeightMode)
 	return buf
 }
 
 func ReceiptBusinessInfoHeader(buf bytes.Buffer) bytes.Buffer {
-	buf.Write(esc.LineFeed)
-	buf.Write(esc.CenterAlign)
-	buf.Write(esc.StringToHexBytes("Trimana Grill"))
-	buf.Write(esc.LineFeed)
-	buf.Write(esc.StringToHexBytes("10920 Wilshire Blvd"))
-	buf.Write(esc.LineFeed)
-	buf.Write(esc.StringToHexBytes("Los Angeles, CA 90024"))
-	buf.Write(esc.LineFeed)
-	buf.Write(esc.StringToHexBytes("(310) 208-2946"))
-	buf.Write(esc.FeedPaper)
+	buf.Write(escpos.LineFeed)
+	buf.Write(escpos.CenterAlign)
+	buf.Write(escpos.StringToHexBytes("Trimana Grill"))
+	buf.Write(escpos.LineFeed)
+	buf.Write(escpos.StringToHexBytes("10920 Wilshire Blvd"))
+	buf.Write(escpos.LineFeed)
+	buf.Write(escpos.StringToHexBytes("Los Angeles, CA 90024"))
+	buf.Write(escpos.LineFeed)
+	buf.Write(escpos.StringToHexBytes("(310) 208-2946"))
+	buf.Write(escpos.FeedPaper)
 	return buf
 }
 
 func ReceiptOrderDetails(order CustomOrder, buf bytes.Buffer) bytes.Buffer {
-	buf.Write(esc.LeftAlign)
-	buf.Write(esc.StringToHexBytes("------------------------------------------"))
-	buf.Write(esc.LineFeed)
-	buf.Write(esc.StringToHexBytes(fmt.Sprintf("Order number: %s", order.ID)))
-	buf.Write(esc.LineFeed)
-	buf.Write(esc.StringToHexBytes(fmt.Sprintf("Name: %s", order.CustomerName)))
-	buf.Write(esc.LineFeed)
-	buf.Write(esc.StringToHexBytes(fmt.Sprintf("Phone Number: %s", order.CustomerNumber)))
-	buf.Write(esc.LineFeed)
-	buf.Write(esc.StringToHexBytes(fmt.Sprintf("Payment: %s", order.PaymentType)))
-	buf.Write(esc.LineFeed)
-	buf.Write(esc.StringToHexBytes(fmt.Sprintf("Due Date: %s", order.DueDate)))
+	buf.Write(escpos.LeftAlign)
+	buf.Write(escpos.StringToHexBytes("------------------------------------------"))
+	buf.Write(escpos.LineFeed)
+	buf.Write(escpos.StringToHexBytes(fmt.Sprintf("Order number: %s", order.ID)))
+	buf.Write(escpos.LineFeed)
+	buf.Write(escpos.StringToHexBytes(fmt.Sprintf("Name: %s", order.CustomerName)))
+	buf.Write(escpos.LineFeed)
+	buf.Write(escpos.StringToHexBytes(fmt.Sprintf("Phone Number: %s", order.CustomerNumber)))
+	buf.Write(escpos.LineFeed)
+	buf.Write(escpos.StringToHexBytes(fmt.Sprintf("Payment: %s", order.PaymentType)))
+	buf.Write(escpos.LineFeed)
+	buf.Write(escpos.StringToHexBytes(fmt.Sprintf("Due Date: %s", order.DueDate)))
 	if order.DeliveryAddress != "" {
-		buf.Write(esc.LineFeed)
-		buf.Write(esc.StringToHexBytes(fmt.Sprintf("Delivery Address: %s", order.DeliveryAddress)))
+		buf.Write(escpos.LineFeed)
+		buf.Write(escpos.StringToHexBytes(fmt.Sprintf("Delivery Address: %s", order.DeliveryAddress)))
 	}
-	buf.Write(esc.LineFeed)
-	buf.Write(esc.StringToHexBytes(order.Fulfillment))
-	buf.Write(esc.LineFeed)
-	buf.Write(esc.StringToHexBytes("------------------------------------------"))
-	buf.Write(esc.FeedPaper)
+	buf.Write(escpos.LineFeed)
+	buf.Write(escpos.StringToHexBytes(order.Fulfillment))
+	buf.Write(escpos.LineFeed)
+	buf.Write(escpos.StringToHexBytes("------------------------------------------"))
+	buf.Write(escpos.FeedPaper)
 	return buf
 }
 
 func ReceiptItems(order CustomOrder, buf bytes.Buffer) bytes.Buffer {
-	buf.Write(esc.LeftAlign)
+	buf.Write(escpos.LeftAlign)
 	for _, item := range order.Items {
-		buf.Write(esc.StringToHexBytes(item.Item))
-		buf.Write(esc.LineFeed)
+		buf.Write(escpos.StringToHexBytes(item.Item))
+		buf.Write(escpos.LineFeed)
 		for _, option := range item.Options {
-			buf.Write(esc.StringToHexBytes(fmt.Sprintf("    %s", option)))
-			buf.Write(esc.LineFeed)
+			buf.Write(escpos.StringToHexBytes(fmt.Sprintf("    %s", option)))
+			buf.Write(escpos.LineFeed)
 		}
 		if item.Comment != "" {
-			buf.Write(esc.StringToHexBytes(fmt.Sprintf("    Comment: %s", item.Comment)))
-			buf.Write(esc.LineFeed)
+			buf.Write(escpos.StringToHexBytes(fmt.Sprintf("    Comment: %s", item.Comment)))
+			buf.Write(escpos.LineFeed)
 		}
-		buf.Write(esc.LineFeed)
+		buf.Write(escpos.LineFeed)
 	}
 	return buf
 }
 
 func ReceiptFooter(order CustomOrder, buf bytes.Buffer) bytes.Buffer {
-	buf.Write(esc.LineFeed)
-	buf.Write(esc.LeftAlign)
+	buf.Write(escpos.LineFeed)
+	buf.Write(escpos.LeftAlign)
 	if order.OrderComment != "" {
-		buf.Write(esc.StringToHexBytes(fmt.Sprintf("Order Comment: %s", order.OrderComment)))
-		buf.Write(esc.LineFeed)
+		buf.Write(escpos.StringToHexBytes(fmt.Sprintf("Order Comment: %s", order.OrderComment)))
+		buf.Write(escpos.LineFeed)
 	}
-	buf.Write(esc.CenterAlign)
-	buf.Write(esc.StringToHexBytes("Thank you!"))
-	buf.Write(esc.FeedPaper)
+	buf.Write(escpos.CenterAlign)
+	buf.Write(escpos.StringToHexBytes("Thank you!"))
+	buf.Write(escpos.FeedPaper)
 	return buf
 }
 

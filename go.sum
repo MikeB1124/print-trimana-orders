@@ -1,3 +1,5 @@
+github.com/MikeB1124/escpos v0.0.0-20240504205432-1d08381a2f33 h1:5hPf3LKWm1dlornJE3vOFhb6JqCqRQcUksAA93Xneok=
+github.com/MikeB1124/escpos v0.0.0-20240504205432-1d08381a2f33/go.mod h1:n2hei2o+SUiyGx0B9on4NW4jH7pLZLPX89sViqI+jIA=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=

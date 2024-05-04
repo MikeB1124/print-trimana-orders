@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
+	"github.com/MikeB1124/escpos"
 	"github.com/MikeB1124/print-trimana-orders/configuration"
-	"github.com/MikeB1124/print-trimana-orders/printer"
 	"github.com/MikeB1124/print-trimana-orders/receipt"
 	"github.com/MikeB1124/print-trimana-orders/wix.go"
 )
@@ -13,9 +13,9 @@ func main() {
 	configuration.Init()
 	//Init printers
 	printers := []map[string]string{{"ip": "192.168.86.29", "port": "9100"}}
-	printerConfigs := []printer.PrinterConfig{}
+	printerConfigs := []escpos.PrinterConfig{}
 	for _, p := range printers {
-		printer := &printer.PrinterConfig{}
+		printer := &escpos.PrinterConfig{}
 		printer.InitPrinter(p["ip"], p["port"])
 		printerConfigs = append(printerConfigs, *printer)
 	}

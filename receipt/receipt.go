@@ -3,7 +3,7 @@ package receipt
 import (
 	"bytes"
 
-	"github.com/MikeB1124/print-trimana-orders/esc"
+	"github.com/MikeB1124/escpos"
 )
 
 type EscFormattedReceipts struct {
@@ -21,7 +21,7 @@ func EscFormatReceipts(orders []CustomOrder) []EscFormattedReceipts {
 		escCmdBuffer = ReceiptOrderDetails(o, escCmdBuffer)
 		escCmdBuffer = ReceiptItems(o, escCmdBuffer)
 		escCmdBuffer = ReceiptFooter(o, escCmdBuffer)
-		escCmdBuffer.Write(esc.FeedPaperAndCut)
+		escCmdBuffer.Write(escpos.FeedPaperAndCut)
 
 		receipt.ID = o.ID
 		receipt.EscCommands = escCmdBuffer.Bytes()
