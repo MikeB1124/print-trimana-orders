@@ -1,10 +1,9 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/MikeB1124/escpos"
 	"github.com/MikeB1124/print-trimana-orders/configuration"
+	"github.com/MikeB1124/print-trimana-orders/logger"
 	"github.com/MikeB1124/print-trimana-orders/receipt"
 	"github.com/MikeB1124/print-trimana-orders/wix.go"
 )
@@ -19,16 +18,18 @@ func main() {
 		printer.InitPrinter(p["ip"], p["port"])
 		printerConfigs = append(printerConfigs, *printer)
 	}
+	logger.InfoLogger.Printf("Configured all printers %+v\n", printerConfigs)
 
 	//Get Wix Orders
 	orders, err := wix.GetWixOrders()
 	if err != nil {
-		panic(fmt.Errorf("failed to get wix orders: %+v", err))
+		logger.ErrorLogger.Printf("Failed to get wix orders: %+v\n", err)
+		return
 	}
 
 	//Check if any order available for printing
 	if len(orders.Orders) == 0 {
-		fmt.Println("No orders available to print.")
+		logger.InfoLogger.Println("0 orders available for printing.")
 		return
 	}
 
@@ -45,9 +46,9 @@ func main() {
 		for _, o := range escFormattedReceipts {
 			err := p.WriteToPrinter(o.EscCommands)
 			if err != nil {
-				fmt.Printf("Printer %s:%s failed to print order# %s: %+v\n", p.PrinterAddr, p.PrinterPort, o.ID, err)
+				logger.ErrorLogger.Printf("Printer %s:%s failed to print order# %s: %+v\n", p.PrinterAddr, p.PrinterPort, o.ID, err)
 			} else {
-				fmt.Printf("Order# %s has been printed by %s:%s\n", o.ID, p.PrinterAddr, p.PrinterPort)
+				logger.InfoLogger.Printf("Order# %s has been printed by %s:%s\n", o.ID, p.PrinterAddr, p.PrinterPort)
 			}
 		}
 		p.NetConnection.Close()
