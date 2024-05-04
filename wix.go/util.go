@@ -70,11 +70,29 @@ type Payment struct {
 }
 
 type Fulfillment struct {
-	Type            string        `json:"type"`
-	PromisedTime    string        `json:"promisedTime"`
-	ASAP            bool          `json:"asap"`
-	PreparationTime int           `json:"preparationTime"`
-	PickupDetails   PickupDetails `json:"pickupDetails"`
+	Type            string          `json:"type"`
+	PromisedTime    string          `json:"promisedTime"`
+	ASAP            bool            `json:"asap"`
+	PreparationTime int             `json:"preparationTime"`
+	PickupDetails   PickupDetails   `json:"pickupDetails"`
+	DeliveryDetails DeliveryDetails `json:"deliveryDetails"`
+}
+
+type DeliveryDetails struct {
+	Address Address `json:"address"`
+}
+
+type Address struct {
+	Formatted    string      `json:"formatted"`
+	Country      interface{} `json:"country"`
+	City         string      `json:"city"`
+	Street       string      `json:"street"`
+	StreetNumber string      `json:"streetNumber"`
+	Apt          string      `json:"apt"`
+	Floor        string      `json:"floor"`
+	Entrance     interface{} `json:"entrance"`
+	ZipCode      string      `json:"zipCode"`
+	SubDivision  string      `json:"subdivision"`
 }
 
 type PickupDetails struct {

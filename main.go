@@ -37,18 +37,18 @@ func main() {
 	fmt.Println(string(jsonFormat))
 
 	//Get esc commands from formatted orders
-	// escFormattedReceipts := receipt.EscFormatReceipts(formattedOrders)
+	escFormattedReceipts := receipt.EscFormatReceipts(formattedOrders)
 
-	// //Print Orders
-	// for _, p := range printerConfigs {
-	// 	for _, o := range escFormattedReceipts {
-	// 		err := p.WriteToPrinter(o.EscCommands)
-	// 		if err != nil {
-	// 			fmt.Printf("Printer %s:%s failed to print order# %s: %+v\n", p.PrinterAddr, p.PrinterPort, o.ID, err)
-	// 		} else {
-	// 			fmt.Printf("Order# %s has been printed by %s:%s\n", o.ID, p.PrinterAddr, p.PrinterPort)
-	// 		}
-	// 	}
-	// 	p.NetConnection.Close()
-	// }
+	//Print Orders
+	for _, p := range printerConfigs {
+		for _, o := range escFormattedReceipts {
+			err := p.WriteToPrinter(o.EscCommands)
+			if err != nil {
+				fmt.Printf("Printer %s:%s failed to print order# %s: %+v\n", p.PrinterAddr, p.PrinterPort, o.ID, err)
+			} else {
+				fmt.Printf("Order# %s has been printed by %s:%s\n", o.ID, p.PrinterAddr, p.PrinterPort)
+			}
+		}
+		p.NetConnection.Close()
+	}
 }

@@ -10,18 +10,19 @@ import (
 )
 
 type CustomOrder struct {
-	ID             string       `json:"id"`
-	CustomerName   string       `json:"customerName"`
-	CustomerNumber string       `json:"customerNumber"`
-	Fulfillment    string       `json:"fulfillment"`
-	DueDate        string       `json:"dueDate"`
-	PaymentType    string       `json:"paymentType"`
-	OrderComment   string       `json:"orderComment"`
-	Tax            string       `json:"tax"`
-	Tip            string       `json:"tip"`
-	SubTotal       string       `json:"subTotal"`
-	Total          string       `json:"total"`
-	Items          []CustomItem `json:"items"`
+	ID              string       `json:"id"`
+	CustomerName    string       `json:"customerName"`
+	CustomerNumber  string       `json:"customerNumber"`
+	Fulfillment     string       `json:"fulfillment"`
+	DueDate         string       `json:"dueDate"`
+	PaymentType     string       `json:"paymentType"`
+	OrderComment    string       `json:"orderComment"`
+	Tax             string       `json:"tax"`
+	Tip             string       `json:"tip"`
+	SubTotal        string       `json:"subTotal"`
+	Total           string       `json:"total"`
+	Items           []CustomItem `json:"items"`
+	DeliveryAddress string       `json:"deliveryAddress"`
 }
 
 type CustomItem struct {
@@ -51,6 +52,14 @@ func FormatOrdersForPrinting(orders wix.WixOrdersResponse) []CustomOrder {
 		formattedOrder.Tip = o.Totals.Tip
 		formattedOrder.SubTotal = o.Totals.Subtotal
 		formattedOrder.Total = o.Totals.Total
+		if o.Fulfillment.Type == "DELIVERY" {
+			formattedOrder.DeliveryAddress = fmt.Sprintf(
+				"%s %s #%s",
+				o.Fulfillment.DeliveryDetails.Address.StreetNumber,
+				o.Fulfillment.DeliveryDetails.Address.Street,
+				o.Fulfillment.DeliveryDetails.Address.Apt,
+			)
+		}
 
 		//Parse all items and options
 		for _, item := range o.LineItems {
@@ -107,8 +116,12 @@ func ReceiptOrderDetails(order CustomOrder, buf bytes.Buffer) bytes.Buffer {
 	buf.Write(esc.LineFeed)
 	buf.Write(esc.StringToHexBytes(fmt.Sprintf("Due Date: %s", order.DueDate)))
 	buf.Write(esc.LineFeed)
-	buf.Write(esc.StringToHexBytes(order.Fulfillment))
+	if order.DeliveryAddress != "" {
+		buf.Write(esc.StringToHexBytes(fmt.Sprintf("Delivery Address: %s", order.DeliveryAddress)))
+		buf.Write(esc.LineFeed)
+	}
 	buf.Write(esc.LineFeed)
+	buf.Write(esc.StringToHexBytes(order.Fulfillment))
 	buf.Write(esc.StringToHexBytes("------------------------------------------"))
 	buf.Write(esc.FeedPaper)
 	return buf
@@ -126,6 +139,18 @@ func ReceiptItems(order CustomOrder, buf bytes.Buffer) bytes.Buffer {
 		buf.Write(esc.StringToHexBytes(item.Comment))
 		buf.Write(esc.LineFeed)
 	}
+	return buf
+}
+
+func ReceiptFooter(order CustomOrder, buf bytes.Buffer) bytes.Buffer {
+	buf.Write(esc.LineFeed)
+	buf.Write(esc.LeftAlign)
+	if order.OrderComment != "" {
+		buf.Write(esc.StringToHexBytes(fmt.Sprintf("Order Comment: %s", order.OrderComment)))
+		buf.Write(esc.LineFeed)
+	}
+	buf.Write(esc.CenterAlign)
+	buf.Write(esc.StringToHexBytes("Thank you!"))
 	buf.Write(esc.FeedPaper)
 	return buf
 }
