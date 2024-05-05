@@ -12,14 +12,6 @@ func main() {
 	logger.InfoLogger.Println("----------------------------------------------")
 	logger.InfoLogger.Println("START PRINTING")
 	configuration.Init()
-	//Init printers
-	printerConfigs := []escpos.PrinterConfig{}
-	for _, p := range configuration.Config.Printers {
-		printer := &escpos.PrinterConfig{}
-		printer.InitPrinter(p.IP, p.Port)
-		printerConfigs = append(printerConfigs, *printer)
-	}
-	logger.InfoLogger.Printf("Configured all printers %+v\n", printerConfigs)
 
 	//Get Wix Orders
 	orders, err := wix.GetWixOrders()
@@ -42,6 +34,15 @@ func main() {
 
 	//Get esc commands from formatted orders
 	escFormattedReceipts := receipt.EscFormatReceipts(formattedOrders)
+
+	//Init printers
+	printerConfigs := []escpos.PrinterConfig{}
+	for _, p := range configuration.Config.Printers {
+		printer := &escpos.PrinterConfig{}
+		printer.InitPrinter(p.IP, p.Port)
+		printerConfigs = append(printerConfigs, *printer)
+	}
+	logger.InfoLogger.Printf("Configured all printers %+v\n", printerConfigs)
 
 	//Print Orders
 	for _, p := range printerConfigs {
