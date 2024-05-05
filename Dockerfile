@@ -16,9 +16,13 @@ COPY . /home/print-trimana-orders
 # Set the working directory
 WORKDIR /home/print-trimana-orders
 
-RUN GOOS=linux GOARCH=amd64 go build -o print-orders
+RUN GOOS=linux GOARCH=amd64 go build -o /home/print-orders
 
-RUN rm -rf /home/print-trimana-orders/app.log
+WORKDIR /home
+
+RUN cp /home/print-trimana-orders/config.yaml /home/config.yaml
+
+RUN rm -rf /home/print-trimana-orders
 
 # Define default command to run when the container starts
 CMD ["sh"]

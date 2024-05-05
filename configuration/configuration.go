@@ -30,7 +30,7 @@ var Config Configuration
 func Init() {
 	var configPath string
 	if os.Getenv("CONTAINER") == "true" {
-		configPath = "/home/print-trimana-orders/config.yaml"
+		configPath = "/home/config.yaml"
 	} else {
 		configPath = "config.yaml"
 	}
