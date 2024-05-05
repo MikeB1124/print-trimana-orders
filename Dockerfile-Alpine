@@ -1,16 +1,10 @@
-# Use an official Ubuntu distribution as a parent image
-FROM ubuntu:latest
+# Use an official Alpine Linux distribution as a parent image
+FROM alpine:latest
 
-# Install necessary packages
-RUN apt-get update && \
-    apt-get install -y \
-    vim \
-    golang-go \
-    ca-certificates \
-    systemctl \
-    cron
+COPY --from=golang:1.13-alpine /usr/local/go/ /usr/local/go/
 
-# Set environment variables
+RUN apk update && apk add --no-cache vim
+
 ENV PATH="/usr/local/go/bin:${PATH}"
 ENV EDITOR=vim
 ENV VISUAL=vim
@@ -22,18 +16,13 @@ COPY . /home/print-trimana-orders
 # Set the working directory
 WORKDIR /home/print-trimana-orders
 
-# Build the Go application
 RUN GOOS=linux GOARCH=amd64 go build -o /home/print-orders
 
 WORKDIR /home
 
-# Copy configuration file
 RUN cp /home/print-trimana-orders/config.yaml /home/config.yaml
 
-# Remove unnecessary files
 RUN rm -rf /home/print-trimana-orders
-
-RUN crontab -l | { cat; echo "* * * * * /home/print-orders >> /home/cron.log 2>&1"; } | crontab -
 
 # Define default command to run when the container starts
 CMD ["sh"]

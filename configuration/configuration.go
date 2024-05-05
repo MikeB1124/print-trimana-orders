@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/MikeB1124/print-trimana-orders/logger"
 	"gopkg.in/yaml.v3"
 )
 
@@ -34,6 +35,7 @@ func Init() {
 	} else {
 		configPath = "config.yaml"
 	}
+	logger.InfoLogger.Printf("Config path set to %s\n", configPath)
 	yamlFile, err := ioutil.ReadFile(configPath)
 
 	if err != nil {
