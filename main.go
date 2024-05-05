@@ -51,6 +51,12 @@ func main() {
 				logger.ErrorLogger.Printf("Printer %s:%s failed to print order# %s: %+v\n", p.PrinterAddr, p.PrinterPort, o.ID, err)
 			} else {
 				logger.InfoLogger.Printf("Order# %s has been printed by %s:%s\n", o.ID, p.PrinterAddr, p.PrinterPort)
+				_, err := wix.AcceptWixOrder(o.ID)
+				if err != nil {
+					logger.ErrorLogger.Printf("Could not accept wix order# %s, Error: %+v\n", o.ID, err)
+				} else {
+					logger.InfoLogger.Printf("Order# %s has been accepted.\n", o.ID)
+				}
 			}
 		}
 		p.NetConnection.Close()

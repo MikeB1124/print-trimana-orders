@@ -128,3 +128,7 @@ type ChannelInfo struct {
 type WixOrdersResponse struct {
 	Orders []Order `json:"orders"`
 }
+
+type WixOrderAcceptedResponse struct {
+	Order Order `json:"order"`
+}

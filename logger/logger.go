@@ -11,7 +11,13 @@ var (
 )
 
 func init() {
-	file, err := os.OpenFile("app.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	var logPath string
+	if os.Getenv("LOG_PATH") != "" {
+		logPath = os.Getenv("LOG_PATH")
+	} else {
+		logPath = "app.log"
+	}
+	file, err := os.OpenFile(logPath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatal(err)
 	}
