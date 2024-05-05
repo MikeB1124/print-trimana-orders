@@ -5,7 +5,7 @@ import (
 	"github.com/MikeB1124/print-trimana-orders/configuration"
 	"github.com/MikeB1124/print-trimana-orders/logger"
 	"github.com/MikeB1124/print-trimana-orders/receipt"
-	"github.com/MikeB1124/print-trimana-orders/wix.go"
+	"github.com/MikeB1124/print-trimana-orders/wix"
 )
 
 func main() {

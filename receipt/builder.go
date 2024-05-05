@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/MikeB1124/escpos"
-	"github.com/MikeB1124/print-trimana-orders/wix.go"
+	"github.com/MikeB1124/print-trimana-orders/wix"
 )
 
 type CustomOrder struct {

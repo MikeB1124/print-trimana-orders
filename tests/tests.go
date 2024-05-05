@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/MikeB1124/print-trimana-orders/wix.go"
+	"github.com/MikeB1124/print-trimana-orders/wix"
 )
 
 func TestJsonOrders() (wix.WixOrdersResponse, error) {
