@@ -22,7 +22,7 @@ COPY . /home/print-trimana-orders
 WORKDIR /home/print-trimana-orders
 
 # Build go binary and create it in the /home directory
-RUN GOOS=linux GOARCH=amd64 go build -o /home/print-orders
+RUN go build -o /home/print-orders
 
 # Set working directory to /home
 WORKDIR /home
