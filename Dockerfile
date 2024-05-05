@@ -34,7 +34,7 @@ RUN cp /home/print-trimana-orders/config.yaml /home/config.yaml
 RUN rm -rf /home/print-trimana-orders
 
 # Add cron job to the crontab to execute the go binary
-RUN crontab -l | { cat; echo "* * * * * /home/print-orders >> /home/cron.log 2>&1"; } | crontab -
+RUN crontab -l | { cat; echo "* * * * 1-5 /home/print-orders >> /home/cron.log 2>&1"; } | crontab -
 
 # Run crond -f -d 8 command when contianer starts up
 CMD ["crond", "-f", "-d", "8"]
