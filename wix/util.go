@@ -113,6 +113,7 @@ type Totals struct {
 	Tax         string        `json:"tax"`
 	Quantity    int           `json:"quantity"`
 	Tip         string        `json:"tip"`
+	Delivery    string        `json:"delivery"`
 	ServiceFees []interface{} `json:"serviceFees"`
 }
 

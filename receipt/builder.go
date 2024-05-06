@@ -21,6 +21,7 @@ type CustomOrder struct {
 	Tip             string       `json:"tip"`
 	SubTotal        string       `json:"subTotal"`
 	Total           string       `json:"total"`
+	DeliveryFee     string       `json:"deliveryFee"`
 	Items           []CustomItem `json:"items"`
 	DeliveryAddress string       `json:"deliveryAddress"`
 }
@@ -51,6 +52,7 @@ func FormatOrdersForPrinting(orders wix.WixOrdersResponse) []CustomOrder {
 		formattedOrder.Tax = o.Totals.Tax
 		formattedOrder.Tip = o.Totals.Tip
 		formattedOrder.SubTotal = o.Totals.Subtotal
+		formattedOrder.DeliveryFee = o.Totals.Delivery
 		formattedOrder.Total = o.Totals.Total
 		if o.Fulfillment.Type == "DELIVERY" {
 			formattedOrder.DeliveryAddress = fmt.Sprintf(
@@ -154,6 +156,10 @@ func ReceiptTotals(order CustomOrder, buf bytes.Buffer) bytes.Buffer {
 	buf.Write(escpos.LineFeed)
 	if order.Tip != "" {
 		buf.Write(escpos.StringToHexBytes(fmt.Sprintf("Tip: $%s", order.Tip)))
+		buf.Write(escpos.LineFeed)
+	}
+	if order.DeliveryFee != "" {
+		buf.Write(escpos.StringToHexBytes(fmt.Sprintf("Delivery Fee: $%s", order.DeliveryFee)))
 		buf.Write(escpos.LineFeed)
 	}
 	buf.Write(escpos.StringToHexBytes(fmt.Sprintf("Total: $%s", order.Total)))
