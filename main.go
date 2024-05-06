@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 
 	"github.com/MikeB1124/escpos"
 	"github.com/MikeB1124/print-trimana-orders/configuration"
@@ -35,7 +34,7 @@ func main() {
 	//Parse and format orders
 	formattedOrders := receipt.FormatOrdersForPrinting(orders)
 	jsonFormat, _ := json.MarshalIndent(formattedOrders, "", "\t")
-	fmt.Println(string(jsonFormat))
+	logger.InfoLogger.Printf("%+v", string(jsonFormat))
 
 	//Get esc commands from formatted orders
 	escFormattedReceipts := receipt.EscFormatReceipts(formattedOrders)
