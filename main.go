@@ -1,6 +1,9 @@
 package main
 
 import (
+	"encoding/json"
+	"fmt"
+
 	"github.com/MikeB1124/escpos"
 	"github.com/MikeB1124/print-trimana-orders/configuration"
 	"github.com/MikeB1124/print-trimana-orders/logger"
@@ -19,18 +22,20 @@ func main() {
 		logger.ErrorLogger.Printf("Failed to get wix orders: %+v\n", err)
 		return
 	}
-	logger.InfoLogger.Printf("%d Wix orders found %+v\n", len(orders.Orders), orders)
+	logger.InfoLogger.Printf("%d Wix orders found.\n", len(orders.Orders))
 
 	//Check if any order available for printing
 	if len(orders.Orders) == 0 {
 		logger.InfoLogger.Println("0 orders available for printing.")
+		logger.InfoLogger.Println("END PRINTING")
+		logger.InfoLogger.Println("----------------------------------------------")
 		return
 	}
 
 	//Parse and format orders
 	formattedOrders := receipt.FormatOrdersForPrinting(orders)
-	// jsonFormat, _ := json.MarshalIndent(formattedOrders, "", "\t")
-	// fmt.Println(string(jsonFormat))
+	jsonFormat, _ := json.MarshalIndent(formattedOrders, "", "\t")
+	fmt.Println(string(jsonFormat))
 
 	//Get esc commands from formatted orders
 	escFormattedReceipts := receipt.EscFormatReceipts(formattedOrders)
