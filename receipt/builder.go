@@ -145,6 +145,22 @@ func ReceiptItems(order CustomOrder, buf bytes.Buffer) bytes.Buffer {
 	return buf
 }
 
+func ReceiptTotals(order CustomOrder, buf bytes.Buffer) bytes.Buffer {
+	buf.Write(escpos.RightAlign)
+	buf.Write(escpos.LineFeed)
+	buf.Write(escpos.StringToHexBytes(fmt.Sprintf("Subtotal: $%s", order.SubTotal)))
+	buf.Write(escpos.LineFeed)
+	buf.Write(escpos.StringToHexBytes(fmt.Sprintf("Tax: $%s", order.Tax)))
+	buf.Write(escpos.LineFeed)
+	if order.Tip != "" {
+		buf.Write(escpos.StringToHexBytes(fmt.Sprintf("Tip: $%s", order.Tip)))
+		buf.Write(escpos.LineFeed)
+	}
+	buf.Write(escpos.StringToHexBytes(fmt.Sprintf("Total: $%s", order.Total)))
+	buf.Write(escpos.FeedPaper)
+	return buf
+}
+
 func ReceiptFooter(order CustomOrder, buf bytes.Buffer) bytes.Buffer {
 	buf.Write(escpos.LineFeed)
 	buf.Write(escpos.LeftAlign)

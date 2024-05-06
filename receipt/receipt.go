@@ -20,6 +20,7 @@ func EscFormatReceipts(orders []CustomOrder) []EscFormattedReceipts {
 		escCmdBuffer = ReceiptBusinessInfoHeader(escCmdBuffer)
 		escCmdBuffer = ReceiptOrderDetails(o, escCmdBuffer)
 		escCmdBuffer = ReceiptItems(o, escCmdBuffer)
+		escCmdBuffer = ReceiptTotals(o, escCmdBuffer)
 		escCmdBuffer = ReceiptFooter(o, escCmdBuffer)
 		escCmdBuffer.Write(escpos.FeedPaperAndCut)
 
