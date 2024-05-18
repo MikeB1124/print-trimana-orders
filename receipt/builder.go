@@ -173,6 +173,7 @@ func ReceiptFooter(order CustomOrder, buf bytes.Buffer) bytes.Buffer {
 	if order.OrderComment != "" {
 		buf.Write(escpos.StringToHexBytes(fmt.Sprintf("Order Comment: %s", order.OrderComment)))
 		buf.Write(escpos.LineFeed)
+		buf.Write(escpos.LineFeed)
 	}
 	buf.Write(escpos.CenterAlign)
 	buf.Write(escpos.StringToHexBytes("Thank you!"))
