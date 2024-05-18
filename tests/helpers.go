@@ -10,7 +10,7 @@ import (
 
 func GetJsonTestOrders() (wix.WixOrdersResponse, error) {
 	var orders wix.WixOrdersResponse
-	jsonFile, err := os.Open("raworder.json")
+	jsonFile, err := os.Open("tests/raworder.json")
 	if err != nil {
 		return wix.WixOrdersResponse{}, err
 	}

@@ -9,7 +9,7 @@ import (
 )
 
 func TestLocalPrinting(t *testing.T) {
-	ip := "192.168.86.29"
+	ip := "192.168.254.22"
 	port := "9100"
 	p := escpos.PrinterConfig{}
 	p.InitPrinter(ip, port)
@@ -24,7 +24,7 @@ func TestLocalPrinting(t *testing.T) {
 }
 
 func TestRemotePrinting(t *testing.T) {
-	ip := "23.243.244.219"
+	ip := "47.147.239.47"
 	port := "7100"
 	p := escpos.PrinterConfig{}
 	p.InitPrinter(ip, port)
